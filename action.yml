@@ -1,0 +1,25 @@
+# action.yml
+name: "Publish NuGet Package"
+description: "Packs and Publishes a NuSpec file to a NuPkg"
+inputs:
+  nuspec-file: # .nuspec filename
+    description: "Name of .nuspec file to process"
+    required: false
+  nuget-host: # NuGet Host path
+    description: "Host for NuGet packages"
+    required: true
+  api-key: # API-Key with write access
+    description: "ApiKey for for NuGet package host"
+    required: false
+  version: # Override for Version
+    description: "Package version"
+    required: false
+    default: "commit-tag"
+outputs:
+  duration: # id of output
+    description: "Time taken for upload of file"
+runs:
+  using: "docker"
+  image: "docker://soloworks/publish-q-sys-plugin:latest"
+  #args:
+  #  - ${{ inputs.who-to-greet }}
