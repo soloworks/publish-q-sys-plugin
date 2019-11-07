@@ -18,7 +18,15 @@ The API Key that grants write access to the NuGet server
 
 ### `version`
 
-The version to tag this release as. Defaults to 'commit-tag' which will try to extract it from the commit tag.
+The version to tag this release as in NuSpec file. Defaults to 'commit-tag' which will try to extract it from the commit tag. Will replace any instances of `0.0.0.0-master` in .qplug files with version. Must be in format `x.x.x.x`.
+
+### `release-notes`
+
+Gathers git commit references since last version tag and replaces ReleaseNotes field of NuSpec file.
+
+### `md-to-desc`
+
+Converts specified MarkDown file to NuGet server format and replaces Description field of NuSpec file. Release notes can be included using `[[RELEASE-NOTES]]`
 
 ## Outputs
 

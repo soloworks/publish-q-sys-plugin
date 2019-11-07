@@ -15,6 +15,13 @@ inputs:
     description: "Package version"
     required: false
     default: "commit-tag"
+  release-notes: # Include release notes from Git
+    description: "Include release notes from Git since last version"
+    required: false
+    default: "false"
+  md-to-desc: # Include MarkDown as Description
+    description: "Replace NuSpec description with supplied .md content"
+    required: false
 outputs:
   duration: # id of output
     description: "Time taken for upload of file"

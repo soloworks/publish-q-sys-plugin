@@ -1,0 +1,4 @@
+github.com/soloworks/go-nuget-utils v1.5.0 h1:qdbqzrlobhxfvlRbBBapwWgmt28QiRcIN/UO13/j6UQ=
+github.com/soloworks/go-nuget-utils v1.5.0/go.mod h1:rJnt4702+gGs/g/zCXXDtbjICreEfbkyRXL8huRYyGU=
+github.com/soloworks/go-nuspec v0.3.0 h1:guoIL3K13UkjjriTqXV6Xfs1PVcLLib3X4E1fTlm26U=
+github.com/soloworks/go-nuspec v0.3.0/go.mod h1:mLMhXDLZHIjX/90kJfhlt51RgJrYzj7LdgxqLI3zxl0=
