@@ -107,22 +107,22 @@ func main() {
 	}
 	log.Println(nsf.Meta.Description)
 	// Pack it up
-	_, err = nuget.PackNupkg(nsf, ".", ".")
+	npkg, err := nuget.PackNupkg(nsf, ".", ".")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	// // Push it up
-	// status, _, err := nuget.PushNupkg(npkg, a.GetInput("Api-Key"), a.GetInput("nuget-host"))
-	// if err != nil {
-	// 	log.Fatalln(err)
-	// }
+	// Push it up
+	status, _, err := nuget.PushNupkg(npkg, a.GetInput("Api-Key"), a.GetInput("nuget-host"))
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-	// if status == 201 {
-	// 	os.Exit(0)
-	// } else {
-	// 	log.Fatalln("Failed with HTTP Status:", status)
-	// }
+	if status == 201 {
+		os.Exit(0)
+	} else {
+		log.Fatalln("Failed with HTTP Status:", status)
+	}
 
 	// Set Output variables
 	//println("::set-output name=duration::", strconv.Itoa(dur))
