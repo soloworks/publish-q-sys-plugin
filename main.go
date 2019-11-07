@@ -1,6 +1,11 @@
 package main
 
 import (
+	"fmt"
+	"image"
+	_ "image/gif"
+	_ "image/jpeg"
+	_ "image/png"
 	"io/ioutil"
 	"log"
 	"os"
@@ -98,15 +103,26 @@ func main() {
 		reImg := regexp.MustCompile(`(?:!\[(.*?)\]\((.*?)\))`)
 		reBraces := regexp.MustCompile(`\((.*)\)`)
 		nsf.Meta.Description = reImg.ReplaceAllStringFunc(string(read), func(s string) string {
-			log.Println(s)
 			return reBraces.ReplaceAllStringFunc(string(s), func(s string) string {
 				p := path.Clean(s[1 : len(s)-1])
+				file, err := os.Open(p)
+				defer file.Close()
+				if err != nil {
+					log.Println(err)
+					return s
+				}
+
+				image, _, err := image.DecodeConfig(file)
+				if err == nil {
+					p = fmt.Sprintf("%s =%dx%d", p, image.Width, image.Height)
+				}
+
 				return "(http://" + p + ")"
 			})
 		})
 	}
-	log.Println(nsf.Meta.Description)
-	// Pack it up
+
+	//Pack it up
 	npkg, err := nuget.PackNupkg(nsf, ".", ".")
 	if err != nil {
 		log.Fatalln(err)
